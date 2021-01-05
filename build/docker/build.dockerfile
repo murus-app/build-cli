@@ -8,4 +8,4 @@ RUN yarn install --frozen-lockfile \
 
 WORKDIR /build
 COPY . .
-RUN yarn run build:ci
+RUN yarn run build
