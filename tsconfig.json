@@ -1,0 +1,28 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "declaration": true,
+    "downlevelIteration": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "importHelpers": true,
+    "locale": "en",
+    "module": "UMD",
+    "moduleResolution": "Node",
+    "newLine": "lf",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "outDir": "./dist",
+    "pretty": true,
+    "removeComments": false,
+    "sourceMap": false,
+    "target": "ES6",
+    "types": ["node"],
+    "typeRoots": ["node_modules/@types"],
+    "importsNotUsedAsValues": "preserve"
+  },
+  "exclude": ["node_modules"]
+}
