@@ -1,11 +1,12 @@
 name: Main Branch Push
 
-on: push
-  branches:
-    - main
+on:
+  push:
+    branches:
+      - main
 
 env:
-  BUILD_STAGE_IMAGE_TAG: docker.pkg.github.com/${{ github.repository }}/build:${{ github.sha }}
+  BUILD_STAGE_IMAGE_TAG: docker.pkg.github.com/${{ github.repository }}/build-cli:${{ github.sha }}
   NPM_DEPLOY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   CI_PUBLIC_EMAIL: ${{ secrets.CI_PUBLIC_EMAIL }}
   CI_PUBLIC_ORG_NAME: ${{ secrets.CI_PUBLIC_ORG_NAME }}
