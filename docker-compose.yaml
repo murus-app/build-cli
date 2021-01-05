@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  build_service:
+    build:
+      context: ./
+      dockerfile: ./build/docker/build.dockerfile
+    image: ${BUILD_STAGE_IMAGE_TAG}
+
+  lint_service:
+    build:
+      context: ./
+      dockerfile: ./build/docker/lint.dockerfile
+
+  deploy_service:
+    build:
+      context: ./
+      dockerfile: ./build/docker/deploy.dockerfile
+      args:
+        - BUILD_STAGE_IMAGE_TAG
+        - NPM_DEPLOY_TOKEN
+        - CI_PUBLIC_EMAIL
+        - CI_PUBLIC_ORG_NAME
