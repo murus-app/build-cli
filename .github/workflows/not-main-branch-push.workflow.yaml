@@ -1,8 +1,8 @@
-name: Pull-Request Update
+name: Not Main Branch Push
 
-on:
-  pull_request:
-    types: [opened, edited, reopened, synchronize]
+on: push
+  branches:
+    - '*/**'
 
 env:
   BUILD_STAGE_IMAGE_TAG: docker.pkg.github.com/${{ github.repository }}/build:${{ github.sha }}
