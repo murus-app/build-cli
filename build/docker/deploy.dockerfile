@@ -12,6 +12,7 @@ RUN node ./dist/main.js prepare-npmrc \
       --auth_token="${NPM_DEPLOY_TOKEN}" \
       --org_email="${CI_PUBLIC_EMAIL}" \
       --org_name="${CI_PUBLIC_ORG_NAME}"
-RUN cp ./.npmrc ./dist/components/ \
-    && cd ./dist/components/ \
+RUN cp ./.npmrc ./dist/ \
+    && cp ./package.json ./dist/ \
+    && cd ./dist/ \
     && npm publish
