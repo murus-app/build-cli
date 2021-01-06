@@ -4,6 +4,7 @@ import { getParsedCommandLineArguments } from './internal/functions/get-parsed-c
 import { ParsedCommandLineArguments } from './internal/interfaces/parsed-command-line-arguments.interface';
 import { PrepareNpmrcProcessor } from './processors/prepare-npmrc.processor';
 import { PreparePackageJsonProcessor } from './processors/prepare-package-json.processor';
+import { ShebangProcessor } from './processors/shebang.processor';
 
 function pickProcessingFunction(): void {
   const { flags, command }: ParsedCommandLineArguments = getParsedCommandLineArguments(argv);
@@ -16,6 +17,11 @@ function pickProcessingFunction(): void {
 
     case 'prepare-package-json': {
       new PreparePackageJsonProcessor(flags).processCommand();
+      return;
+    }
+
+    case 'shebang': {
+      new ShebangProcessor(flags).processCommand();
       return;
     }
 
