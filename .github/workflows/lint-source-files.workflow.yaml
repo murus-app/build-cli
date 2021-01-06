@@ -1,4 +1,4 @@
-name: Not Main Branch Push
+name: Lint source files
 
 on:
   push:
