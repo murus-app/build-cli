@@ -1,3 +1,3 @@
 # Build CLI Toolkit
 
-![](./raw/main/preview.png)
+![Preview](/murus-app/build-cli/raw/main/preview.png)
