@@ -1,3 +1,4 @@
+import { isNil } from 'dist/_temp/is-nil.function';
 import { readFileSync, writeFileSync } from 'fs';
 import { cwd } from 'process';
 import { CommandProcessor } from './../internal/interfaces/command-processor.interface';
@@ -22,20 +23,40 @@ export class PrepareNpmrcProcessor implements CommandProcessor {
   }
 
   public processCommand(): void {
-    const currentContent: string = this.getCurrentNpmrcContent();
-    const updatedContent: string = `${currentContent.trim()}
-_auth = ${this.authToken}
-email = ${this.orgEmail}
-@${this.orgName}:registry = https://npm.pkg.github.com
-//npm.pkg.github.com/:_authToken=${this.authToken}`;
+    const currentContentLines: string[] = this.getCurrentNpmrcContentLines();
+    const currentContentEntries: [string, string][] = currentContentLines
+      .map((line: string) => {
+        const dividedLine: string[] = line.split('=');
+
+        if (dividedLine.length !== 2) {
+          return null;
+        }
+
+        const [rawKey, rawValue]: string[] = dividedLine;
+        const key: string = String(rawKey).trim();
+        const value: string = String(rawValue).trim();
+
+        return [key, value];
+      })
+      .filter((contentEntry: [string, string] | null): contentEntry is [string, string] => !isNil(contentEntry));
+    const currentContentValueByKey: Map<string, string> = new Map<string, string>(currentContentEntries);
+
+    currentContentValueByKey.set('_auth', this.authToken);
+    currentContentValueByKey.set('email', this.orgEmail);
+    currentContentValueByKey.set(`@${this.orgName}:registry`, 'https://npm.pkg.github.com');
+    currentContentValueByKey.set(`//npm.pkg.github.com/:_authToken`, this.authToken);
+
+    const updatedContent: string = Array.from(currentContentValueByKey.entries())
+      .map(([key, value]: [string, string]) => `${key} = ${value}`)
+      .join('\n');
 
     this.updateNpmrcContent(updatedContent);
   }
 
-  private getCurrentNpmrcContent(): string {
+  private getCurrentNpmrcContentLines(): string[] {
     const content: string = readFileSync(`${this.currentLocation}/${this.npmrcPath}`, 'utf-8');
-
-    return content ?? '';
+    const contentLines: string[] = content.split(/\r?\n/);
+    return contentLines;
   }
 
   private updateNpmrcContent(newData: string): void {
