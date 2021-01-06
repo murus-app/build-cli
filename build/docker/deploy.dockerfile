@@ -14,6 +14,8 @@ RUN cp ./.npmrc ./dist/ \
  && cp ./package.json ./dist/ \
  && cd ./dist/
 
+WORKDIR /dist
+
 RUN node ./main.js prepare-npmrc \
       --npmrc_path="./.npmrc" \
       --auth_token="${NPM_DEPLOY_TOKEN}" \

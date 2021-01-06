@@ -1,4 +1,4 @@
-name: Main Branch Push
+name: Publish NPM package
 
 on:
   push:
