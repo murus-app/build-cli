@@ -25,4 +25,4 @@ RUN node ./main.js prepare-package-json \
       --package_json_path="./package.json" \
       --main_js_path="./main.js"
 
-RUN npm publish --access public --tag ${GIT_COMMIT_HASH} --tag latest
+RUN npm publish --access public --tag latest
