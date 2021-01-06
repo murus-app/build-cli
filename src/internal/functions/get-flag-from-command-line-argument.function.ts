@@ -1,6 +1,5 @@
+import { isNil, Nullable } from '@murus-app/node-utilities';
 import { Flag } from '../interfaces/flag.interface';
-import { isNil } from './../../_temp/is-nil.function';
-import { Nullable } from './../../_temp/nullable.type';
 
 export function getFlagFromCommandLineArgument(commandLineArgument: Nullable<string>): Nullable<Flag> {
   if (isNil(commandLineArgument)) {

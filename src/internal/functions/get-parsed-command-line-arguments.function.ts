@@ -1,7 +1,6 @@
+import { isNil, Nullable } from '@murus-app/node-utilities';
 import { Flag } from '../interfaces/flag.interface';
 import { ParsedCommandLineArguments } from '../interfaces/parsed-command-line-arguments.interface';
-import { isNil } from './../../_temp/is-nil.function';
-import { Nullable } from './../../_temp/nullable.type';
 import { getFlagFromCommandLineArgument } from './get-flag-from-command-line-argument.function';
 
 export function getParsedCommandLineArguments(rawArguments: string[]): ParsedCommandLineArguments {

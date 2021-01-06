@@ -19,6 +19,7 @@
     "murus-build-cli": "dist/main.js"
   },
   "dependencies": {
+    "@murus-app/node-utilities": "^0.1.0-11acf5a53d025808939f5f87bfeade9e582b2a84",
     "fancy-log": "^1.3.3"
   },
   "devDependencies": {
