@@ -21,3 +21,4 @@ services:
         - NPM_DEPLOY_TOKEN
         - CI_PUBLIC_EMAIL
         - CI_PUBLIC_ORG_NAME
+        - GIT_COMMIT_HASH

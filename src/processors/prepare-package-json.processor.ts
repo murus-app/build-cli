@@ -5,34 +5,35 @@ import { Flag } from '../internal/interfaces/flag.interface';
 import { isEmpty } from './../_temp/is-empty.function';
 import { isNil } from './../_temp/is-nil.function';
 
-type ContentEntry = [string, unknown];
+type ObjectEntry = [string, unknown];
 
 export class PreparePackageJsonProcessor implements CommandProcessor {
   private readonly currentLocation: string = cwd();
 
-  private readonly packageJsonPath: string;
   private readonly commitHash: string;
+  private readonly packageJsonPath: string;
   private readonly mainJsPath: string;
 
   constructor(flags: Flag[]) {
     const flagsObjectEntries: [string, string][] = flags.map(({ name, value }: Flag) => [name, value]);
     const flagsObject: Record<string, string> = Object.fromEntries(flagsObjectEntries);
 
-    this.packageJsonPath = flagsObject['package_json_path'] ?? '';
     this.commitHash = flagsObject['commit_hash'] ?? '';
+    this.packageJsonPath = flagsObject['package_json_path'] ?? '';
     this.mainJsPath = flagsObject['main_js_path'] ?? '';
   }
 
   public processCommand(): void {
     const currentContent: object = this.getCurrentPackageJsonContent();
-    const currentContentEntries: ContentEntry[] = Object.entries(currentContent);
+    const currentContentEntries: ObjectEntry[] = Object.entries(currentContent);
 
     const contentValueByKey: Map<string, unknown> = new Map<string, unknown>(
-      currentContentEntries.map(([key, value]: ContentEntry) => [key, value])
+      currentContentEntries.map(([key, value]: ObjectEntry) => [key, value])
     );
 
     this.setProperVersion(contentValueByKey);
     this.setProperMain(contentValueByKey);
+    this.setProperBin(contentValueByKey);
 
     this.deleteUnnecessaryProperties(contentValueByKey);
 
@@ -54,6 +55,24 @@ export class PreparePackageJsonProcessor implements CommandProcessor {
       return;
     }
     contentValueByKey.set('main', this.mainJsPath);
+  }
+
+  private setProperBin(contentValueByKey: Map<string, unknown>): void {
+    if (isNil(this.mainJsPath)) {
+      return;
+    }
+    const currentBinValue: unknown = contentValueByKey.get('bin');
+    if (typeof currentBinValue !== 'object') {
+      return;
+    }
+
+    const currentBinValueEntries: ObjectEntry[] = Object.entries(currentBinValue);
+    const updatedBinValueEntries: ObjectEntry[] = currentBinValueEntries.map(([key, _value]: ObjectEntry) => {
+      return [key, this.mainJsPath];
+    });
+
+    const updatedBinValue: object = Object.fromEntries(updatedBinValueEntries);
+    contentValueByKey.set('bin', updatedBinValue);
   }
 
   private deleteUnnecessaryProperties(contentValueByKey: Map<string, unknown>): void {

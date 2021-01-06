@@ -10,6 +10,7 @@ env:
   NPM_DEPLOY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   CI_PUBLIC_EMAIL: ${{ secrets.CI_PUBLIC_EMAIL }}
   CI_PUBLIC_ORG_NAME: ${{ secrets.CI_PUBLIC_ORG_NAME }}
+  GIT_COMMIT_HASH: ${{ github.sha }}
 
 defaults:
   run:
