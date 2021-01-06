@@ -5,12 +5,16 @@ services:
     build:
       context: ./
       dockerfile: ./build/docker/build.dockerfile
+      args:
+        - NPM_DEPLOY_TOKEN
     image: ${BUILD_STAGE_IMAGE_TAG}
 
   lint_service:
     build:
       context: ./
       dockerfile: ./build/docker/lint.dockerfile
+      args:
+        - NPM_DEPLOY_TOKEN
 
   deploy_service:
     build:

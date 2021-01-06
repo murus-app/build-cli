@@ -1,9 +1,8 @@
+import { isEmpty, isNil } from '@murus-app/node-utilities';
 import { readFileSync, writeFileSync } from 'fs';
 import { cwd } from 'process';
 import { CommandProcessor } from '../internal/interfaces/command-processor.interface';
 import { Flag } from '../internal/interfaces/flag.interface';
-import { isEmpty } from './../_temp/is-empty.function';
-import { isNil } from './../_temp/is-nil.function';
 
 type ObjectEntry = [string, unknown];
 

@@ -1,8 +1,8 @@
+import { isNil } from '@murus-app/node-utilities';
 import { readFileSync, writeFileSync } from 'fs';
 import { cwd } from 'process';
 import { CommandProcessor } from './../internal/interfaces/command-processor.interface';
 import { Flag } from './../internal/interfaces/flag.interface';
-import { isNil } from './../_temp/is-nil.function';
 
 export class PrepareNpmrcProcessor implements CommandProcessor {
   private readonly currentLocation: string = cwd();

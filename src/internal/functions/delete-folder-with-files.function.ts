@@ -1,8 +1,6 @@
+import { isEmpty, isNil, Nullable } from '@murus-app/node-utilities';
 import { existsSync, lstatSync, readdirSync, rmdirSync, unlinkSync } from 'fs';
 import * as path from 'path';
-import { isEmpty } from './../../_temp/is-empty.function';
-import { isNil } from './../../_temp/is-nil.function';
-import { Nullable } from './../../_temp/nullable.type';
 
 interface Options {
   fileMatchPattern?: Nullable<RegExp>;

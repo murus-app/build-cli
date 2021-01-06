@@ -1,7 +1,6 @@
+import { isNil, Nullable } from '@murus-app/node-utilities';
 import { exec, ExecException } from 'child_process';
 import { error, info, warn } from 'fancy-log';
-import { isNil } from '../../_temp/is-nil.function';
-import { Nullable } from '../../_temp/nullable.type';
 
 export function executeCommandWithLogging(
   command: string,
