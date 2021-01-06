@@ -11,20 +11,16 @@ WORKDIR /build
 COPY . .
 
 RUN cp ./.npmrc ./dist/ \
- && cp ./package.json ./dist/ \
- && cd ./dist/
+ && cp ./package.json ./dist/
 
-WORKDIR /dist
-
-RUN node ./main.js prepare-npmrc \
+RUN cd ./dist/ \
+ && node ./main.js prepare-npmrc \
       --npmrc_path="./.npmrc" \
       --auth_token="${NPM_DEPLOY_TOKEN}" \
       --org_email="${CI_PUBLIC_EMAIL}" \
-      --org_name="${CI_PUBLIC_ORG_NAME}"
-
-RUN node ./main.js prepare-package-json \
+      --org_name="${CI_PUBLIC_ORG_NAME}" \
+ && node ./main.js prepare-package-json \
       --commit_hash="${GIT_COMMIT_HASH}" \
       --package_json_path="./package.json" \
-      --main_js_path="./main.js"
-
-RUN npm publish --access public --tag latest
+      --main_js_path="./main.js" \
+ && npm publish --access public --tag latest
