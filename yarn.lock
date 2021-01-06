@@ -23,10 +23,10 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@murus-app/node-utilities@^0.1.0-11acf5a53d025808939f5f87bfeade9e582b2a84":
-  version "0.1.0-11acf5a53d025808939f5f87bfeade9e582b2a84"
-  resolved "https://npm.pkg.github.com/download/@murus-app/node-utilities/0.1.0-11acf5a53d025808939f5f87bfeade9e582b2a84/be708d82a62fa714324332de9f0dd4126fa3b634ad0886d85a31112d6d17fecc#36f14b3d7f4e60ebaf1a1316be8a7c764381e2c6"
-  integrity sha512-hv1o8kkNdRC2jgKCqNA7SYa93Y1CDBcYRpXAkkhq1qE1iuS2lQUIDmCL7YV1adROEoUAQVFT8UNYr0ijy/5VDg==
+"@murus-app/node-utilities@^0.1.0-258fd242f78177463823b717464e1e831b3d9e72":
+  version "0.1.0-258fd242f78177463823b717464e1e831b3d9e72"
+  resolved "https://npm.pkg.github.com/download/@murus-app/node-utilities/0.1.0-258fd242f78177463823b717464e1e831b3d9e72/0d7d290744b1baee8f9683c3ea122a2b4faa9baf31f2468097aaa9c8ebc2f883#2fea5c29585c98eb6b891906ac52889dde1c416e"
+  integrity sha512-1F1+3Uq0VQjgiNwf8RPc4gmntVEhdRM7/zE+0KLaHKyrz8ucKFwEdDS1Q9PTX2jInUcz8zEK+7mOFwZ+KrxSgA==
 
 "@types/fancy-log@^1.3.1":
   version "1.3.1"

@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - '**'
+env:
+  NPM_DEPLOY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 defaults:
   run:
