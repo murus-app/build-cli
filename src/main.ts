@@ -3,6 +3,7 @@ import { argv } from 'process';
 import { getParsedCommandLineArguments } from './internal/functions/get-parsed-command-line-arguments.function';
 import { ParsedCommandLineArguments } from './internal/interfaces/parsed-command-line-arguments.interface';
 import { PrepareNpmrcProcessor } from './processors/prepare-npmrc.processor';
+import { PreparePackageJsonProcessor } from './processors/prepare-package-json.processor';
 
 function pickProcessingFunction(): void {
   const { flags, command }: ParsedCommandLineArguments = getParsedCommandLineArguments(argv);
@@ -10,6 +11,11 @@ function pickProcessingFunction(): void {
   switch (command) {
     case 'prepare-npmrc': {
       new PrepareNpmrcProcessor(flags).processCommand();
+      return;
+    }
+
+    case 'prepare-package-json': {
+      new PreparePackageJsonProcessor(flags).processCommand();
       return;
     }
 

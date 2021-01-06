@@ -1,7 +1,6 @@
 {
   "name": "@murus-app/build-cli",
   "version": "0.1.0",
-  "main": "dist/main.js",
   "license": "SEE LICENSE IN LICENSE",
   "repository": {
     "type": "git",
@@ -17,7 +16,7 @@
     "prettier:format": "prettier --loglevel log --config ./.prettierrc --ignore-path ./.prettierignore --write \"./**/*.{json,js,ts}\""
   },
   "bin": {
-    "@murus-app/build-cli": "dist/main.js"
+    "murus-build-cli": "dist/main.js"
   },
   "dependencies": {
     "fancy-log": "^1.3.3"

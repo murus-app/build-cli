@@ -3,7 +3,7 @@ name: Not Main Branch Push
 on:
   push:
     branches:
-      - '*/**'
+      - '**'
 
 defaults:
   run:
