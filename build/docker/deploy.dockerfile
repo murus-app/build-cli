@@ -10,7 +10,7 @@ ARG GIT_COMMIT_HASH
 WORKDIR /build
 COPY . .
 
-RUN cp ./{.npmrc,package.json,LICENSE} ./dist/
+RUN cp ./.npmrc ./package.json ./LICENSE  --target-directory ./dist/
 
 RUN cd ./dist/ \
  && node ./main.js prepare-npmrc \
