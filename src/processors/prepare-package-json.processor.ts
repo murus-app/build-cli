@@ -12,6 +12,7 @@ export class PreparePackageJsonProcessor implements CommandProcessor {
   private readonly commitHash: string;
   private readonly packageJsonPath: string;
   private readonly mainJsPath: string;
+  private readonly privateValue: string;
 
   constructor(flags: Flag[]) {
     const flagsObjectEntries: [string, string][] = flags.map(({ name, value }: Flag) => [name, value]);
@@ -20,6 +21,7 @@ export class PreparePackageJsonProcessor implements CommandProcessor {
     this.commitHash = flagsObject['commit_hash'] ?? '';
     this.packageJsonPath = flagsObject['package_json_path'] ?? '';
     this.mainJsPath = flagsObject['main_js_path'] ?? '';
+    this.privateValue = flagsObject['private'] ?? '';
   }
 
   public processCommand(): void {
@@ -33,6 +35,7 @@ export class PreparePackageJsonProcessor implements CommandProcessor {
     this.setProperVersion(contentValueByKey);
     this.setProperMain(contentValueByKey);
     this.setProperBin(contentValueByKey);
+    this.setProperPrivate(contentValueByKey);
 
     this.deleteUnnecessaryProperties(contentValueByKey);
 
@@ -72,6 +75,13 @@ export class PreparePackageJsonProcessor implements CommandProcessor {
 
     const updatedBinValue: object = Object.fromEntries(updatedBinValueEntries);
     contentValueByKey.set('bin', updatedBinValue);
+  }
+
+  private setProperPrivate(contentValueByKey: Map<string, unknown>): void {
+    if (isNil(this.privateValue)) {
+      return;
+    }
+    contentValueByKey.set('private', this.privateValue === 'true');
   }
 
   private deleteUnnecessaryProperties(contentValueByKey: Map<string, unknown>): void {
